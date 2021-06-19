@@ -45,6 +45,7 @@ def register():
         # Put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash(f"Registration successful {session['user'].capitalize()}!")
+        return redirect(url_for('profile', username=session["user"]))
 
     return render_template("register.html")
 
@@ -64,7 +65,7 @@ def login():
                 session['user'] = request.form.get("username").lower()
                 flash(f"Welcome {session['user'].capitalize()}")
                 # flash("Welcome {}".format(request.form.get("username")))
-                return redirect(url_for('get_tasks'))
+                return redirect(url_for('profile', username=session["user"]))
             else:
                 # Invalid password match
                 flash("Incorrect Username and/or Password")
@@ -74,6 +75,14 @@ def login():
             return redirect(url_for('login'))
 
     return render_template("login.html")
+
+
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    # Grab the session user's username from the db
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    return render_template("profile.html", username=username)
 
 
 if __name__ == "__main__":
