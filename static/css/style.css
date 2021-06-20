@@ -10,6 +10,10 @@
     margin: 5px;
 }
 
+.btn {
+    margin: 5px;
+}
+
 .collapsible-header .col strong {
     margin: 5px;
     line-height: 42px;
@@ -17,4 +21,20 @@
 
 #task-wrapper{
     margin-bottom: 0px;
+}
+
+.message-content {
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translate(0, -50%);
+    margin: 0;
+    height: 20px;
+    width: 25px;
+    line-height: 2px;
+    padding: 3px;
 }

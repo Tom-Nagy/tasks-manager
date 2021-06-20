@@ -54,4 +54,8 @@ $(document).ready(function () {
             }
         });
     }
+
+    $(".close").click(function() {
+        $('#flashes-messages').remove();
+    });
 });
